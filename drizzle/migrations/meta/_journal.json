@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789949282080,
+      "tag": "0000_add_team_booking_and_editable_content",
+      "breakpoints": true
+    }
+  ]
+}
