@@ -77,7 +77,7 @@ const HiringPage = () => {
       if (!storedInAdmin && !deliveredByWeb3Forms) {
         throw new Error("Neither the admin dashboard nor Web3Forms accepted the application.");
       }
-      navigate("/careers/success", { state: { applicantName: String(form.get("full_name") || "").trim(), language } });
+      navigate("/collaborations/careers/success", { state: { applicantName: String(form.get("full_name") || "").trim(), language } });
     } catch (submissionError) {
       console.error("Job application submission failed:", submissionError);
       setError(t("We couldn't submit your application. Please try again or email cyrechtech@gmail.com."));

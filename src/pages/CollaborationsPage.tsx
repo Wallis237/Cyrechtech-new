@@ -128,7 +128,10 @@ const CollaborationsPage = () => {
                 <p className="eyebrow">{t("Interested in collaborating?")}</p>
                 <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">{t("Let’s create something together.")}</h2>
               </div>
-              <Link to="/contact" className="btn-lime shrink-0">{t("Contact us")} <ArrowUpRight className="h-4 w-4" /></Link>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link to="/collaborations/careers" className="btn-ghost shrink-0">{t("Explore career opportunities")} <ArrowUpRight className="h-4 w-4" /></Link>
+                <Link to="/contact" className="btn-lime shrink-0">{t("Contact us")} <ArrowUpRight className="h-4 w-4" /></Link>
+              </div>
             </div>
           </div>
         </section>

@@ -11,7 +11,7 @@ const Footer = () => {
   const navLinks = useNavLinks();
   const logoSrc = siteText('logo_image') || '/lovable-uploads/logo.jpg';
   const brandName = siteText('brand_name');
-  const contactEmail = 'cyrechtech@gmail.com';
+  const contactEmail = 'info@cyrechtech.com';
   const contactPhone = '+237671689878';
   const year = new Date().getFullYear();
 
@@ -93,7 +93,6 @@ const Footer = () => {
 
         <div className="mt-12 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted-foreground font-mono">
           <span>© {year} {t(siteText('footer_copyright'))}</span>
-          <span>{t(siteText('footer_location'))}</span>
         </div>
       </div>
     </footer>

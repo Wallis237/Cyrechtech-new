@@ -57,6 +57,33 @@ const teamProfiles: TeamProfile[] = [
     sort_order: 6,
     expertise: "Client experience, technology-driven support, customer relationships",
   },
+  {
+    id: "deric-assily",
+    name: "Deric Assily",
+    role: "Graphic Designer",
+    description: "Creates thoughtful visual designs that help brands communicate clearly and connect with their audiences.",
+    image: "/lovable-uploads/deric-assily.png",
+    sort_order: 7,
+    expertise: "Graphic design, visual communication, brand identity",
+  },
+  {
+    id: "ndie-nghetchejeu-leonel",
+    name: "Ndie Nghetchejeu Leonel",
+    role: "Content Creation & Digital Marketing",
+    description: "Creates engaging content and supports digital marketing initiatives to grow audiences and strengthen engagement.",
+    image: "/lovable-uploads/ndie-nghetchejeu-leonel.png",
+    sort_order: 8,
+    expertise: "Content creation, digital marketing, audience growth, and engagement",
+  },
+  {
+    id: "mayack-larissa",
+    name: "Mayack Larissa",
+    role: "Marketer",
+    description: "Mayack promotes brands with strategic marketing initiatives that attract attention, build trust, and help businesses reach more customers.",
+    image: "/lovable-uploads/team-mayack-larissa.png",
+    sort_order: 9,
+    expertise: "Brand promotion, customer acquisition, marketing strategy",
+  },
 ];
 
 const displayName = (name: string) => {
@@ -97,28 +124,38 @@ const TeamPage = () => {
         const monthe = isMontheProfile(displayedName);
         const tarshi = isTarshiProfile(displayedName);
         const ndel = displayedName.toLowerCase() === "ndel mike";
+        const ndie = displayedName.toLowerCase() === "ndie nghetchejeu leonel";
+        const deric = displayedName.toLowerCase() === "deric assily";
         const ceo = isCeoProfile(row.name);
         const grace = isGraceProfile(row.name);
         return {
           ...row,
           name: grace ? "Sufeu Tallla Grace" : displayedName,
-          role: ceo ? "CEO" : grace ? "Client Experience & Technology Officer" : pieukam ? "Chief of Operations" : displayRole(row.name, row.role),
+          role: ceo ? "CEO" : grace ? "Client Experience & Technology Officer" : pieukam ? "Chief of Operations" : ndie || deric ? profile?.role ?? row.role : displayRole(row.name, row.role),
           secondaryRole: pieukam ? "Chief of Marketing Team" : undefined,
           description: grace
             ? "Combines client support with technology-driven solutions to enhance customer satisfaction, resolve issues, and build lasting relationships."
-            : row.description || profile?.description || t("A valued member of our multidisciplinary team, contributing to thoughtful digital solutions for our clients."),
+            : ndie || deric
+              ? profile?.description ?? row.description
+              : row.description || profile?.description || t("A valued member of our multidisciplinary team, contributing to thoughtful digital solutions for our clients."),
           image: grace
             ? "/lovable-uploads/team-sufeu-tallla-grace.png"
             : ceo
             ? "/lovable-uploads/team-ebua-glenn.png"
             : pieukam
             ? "/lovable-uploads/team-pieukam-ralf.png"
+            : ndie
+              ? "/lovable-uploads/ndie-nghetchejeu-leonel.png"
+              : deric
+                ? "/lovable-uploads/deric-assily.png"
             : monthe
               ? "/lovable-uploads/team-monthe-christian.png"
               : tarshi
                 ? "/lovable-uploads/team-tarshi-williams.png"
-                : ndel
-                  ? "/lovable-uploads/team-ndel-mike.png"
+                : ndie
+                  ? "/lovable-uploads/ndie-nghetchejeu-leonel.png"
+                  : ndel
+                    ? "/lovable-uploads/team-ndel-mike.png"
               : row.image || profile?.image || "",
           expertise: profile?.expertise || row.role,
         };
@@ -162,7 +199,7 @@ const TeamPage = () => {
             <div className="grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {members.map((member) => (
                 <article key={member.id} className="surface-card-hover group flex h-full flex-col overflow-hidden">
-                  <div className={`relative aspect-[4/3] overflow-hidden ${["Ebua Glenn", "Sufeu Tallla Grace", "Pieukam Ralf", "Monthe Christian", "Tarshi Williams", "Ndel Mike"].includes(member.name) ? "bg-white" : "bg-muted"}`}>
+                  <div className={`relative aspect-[4/3] overflow-hidden ${["Ebua Glenn", "Sufeu Tallla Grace", "Pieukam Ralf", "Monthe Christian", "Tarshi Williams", "Ndel Mike", "Deric Assily", "Ndie Nghetchejeu Leonel", "Mayack Larissa"].includes(member.name) ? "bg-white" : "bg-muted"}`}>
                       {!member.image && (
                         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/20 via-card to-muted">
                           <span className="font-display text-6xl font-bold text-primary/70">
@@ -175,7 +212,7 @@ const TeamPage = () => {
                         src={member.image}
                         alt={t(member.name)}
                         loading="lazy"
-                        className={`h-full w-full transition-transform duration-700 ${["Ebua Glenn", "Sufeu Tallla Grace", "Tarshi Williams", "Pieukam Ralf", "Monthe Christian", "Ndel Mike"].includes(member.name) ? "object-contain object-center" : "object-cover group-hover:scale-105"}`}
+                        className={`h-full w-full transition-transform duration-700 ${["Ebua Glenn", "Sufeu Tallla Grace", "Tarshi Williams", "Pieukam Ralf", "Monthe Christian", "Ndel Mike", "Deric Assily", "Ndie Nghetchejeu Leonel", "Mayack Larissa"].includes(member.name) ? "object-contain object-center" : "object-cover group-hover:scale-105"}`}
                         onError={(event) => {
                           event.currentTarget.style.display = "none";
                         }}

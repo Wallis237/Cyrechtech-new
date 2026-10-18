@@ -12,7 +12,7 @@ export const useNavLinks = () => {
     { name: t(siteText('nav_home')), to: '/' },
     { name: t(siteText('nav_projects')), to: '/projects' },
     { name: t(siteText('nav_services')), to: '/services' },
-    { name: t("Careers"), to: '/careers' },
+    { name: t("Careers"), to: '/collaborations/careers' },
     { name: t(siteText('nav_about')), to: '/about' },
     { name: t("Team"), to: '/team' },
     { name: t("Collaborations"), to: '/collaborations' },
@@ -64,16 +64,38 @@ const Navbar = () => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <NavLink key={l.to} to={l.to} end className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                {l.name}
-              </NavLink>
+            {navLinks.filter((link) => link.to !== '/collaborations/careers').map((link) => (
+              link.to === '/collaborations' ? (
+                <div key={link.to} className="group relative">
+                  <NavLink
+                    to={link.to}
+                    end
+                    className={({ isActive }) => `nav-link ${isActive || pathname.startsWith('/collaborations/careers') ? 'active' : ''}`}
+                  >
+                    {link.name}
+                  </NavLink>
+                  <div className="invisible absolute left-0 top-full z-50 pt-4 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <NavLink
+                      to="/collaborations/careers"
+                      className={({ isActive }) => `block whitespace-nowrap rounded-lg border border-border bg-background px-4 py-3 text-sm transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`}
+                    >
+                      {navLinks.find((item) => item.to === '/collaborations/careers')?.name}
+                    </NavLink>
+                  </div>
+                </div>
+              ) : (
+                <NavLink key={link.to} to={link.to} end className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  {link.name}
+                </NavLink>
+              )
             ))}
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageSelector language={language} setLanguage={setLanguage} />
-            <div className="hidden sm:block"><ThemeToggle /></div>
+            <div className="hidden sm:block">
+              <LanguageSelector language={language} setLanguage={setLanguage} />
+            </div>
+            <ThemeToggle />
             <Link to="/contact" className="hidden md:inline-flex btn-lime !py-2 !px-5 text-sm">{t(siteText('nav_cta'))}</Link>
             <button
               onClick={() => setOpen(!open)}
@@ -88,15 +110,24 @@ const Navbar = () => {
 
       <div className={`md:hidden overflow-hidden transition-all duration-500 ${open ? 'max-h-[36rem] opacity-100' : 'max-h-0 opacity-0'}`}>
         <nav className="flex flex-col py-4 px-6 gap-1">
-          {navLinks.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end
-              className={({ isActive }) => `py-3 text-base font-medium transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
-            >
-              {l.name}
-            </NavLink>
+          {navLinks.filter((link) => link.to !== '/collaborations/careers').map((link) => (
+            <div key={link.to}>
+              <NavLink
+                to={link.to}
+                end
+                className={({ isActive }) => `block py-3 text-base font-medium transition-colors ${isActive || (link.to === '/collaborations' && pathname.startsWith('/collaborations/careers')) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
+              >
+                {link.name}
+              </NavLink>
+              {link.to === '/collaborations' && (
+                <NavLink
+                  to="/collaborations/careers"
+                  className={({ isActive }) => `block py-2 pl-4 text-sm transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}
+                >
+                  {navLinks.find((item) => item.to === '/collaborations/careers')?.name}
+                </NavLink>
+              )}
+            </div>
           ))}
           <label className="mt-3 flex items-center justify-between text-sm text-muted-foreground">
             {t("Language")}

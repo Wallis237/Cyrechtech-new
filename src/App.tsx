@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import WorkPage from "./pages/WorkPage";
 import ServicesPage from "./pages/ServicesPage";
@@ -34,9 +34,11 @@ const AppRoutes = () => {
           <Route path="/work" element={<WorkPage />} />
           <Route path="/projects" element={<WorkPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/careers" element={<HiringPage />} />
-          <Route path="/careers/success" element={<HiringSuccessPage />} />
+          <Route path="/careers" element={<Navigate to="/collaborations/careers" replace />} />
+          <Route path="/careers/success" element={<Navigate to="/collaborations/careers/success" replace />} />
           <Route path="/collaborations" element={<CollaborationsPage />} />
+          <Route path="/collaborations/careers" element={<HiringPage />} />
+          <Route path="/collaborations/careers/success" element={<HiringSuccessPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/booking" element={<BookingPage />} />
