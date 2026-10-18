@@ -12,10 +12,19 @@ type TeamProfile = TeamRow & {
 
 const teamProfiles: TeamProfile[] = [
   {
+    id: "ebua-glenn",
+    name: "Ebua Glenn",
+    role: "CEO",
+    description: "Guides Cyrech Tech’s vision, partnerships, and long-term growth with a focus on meaningful digital impact.",
+    image: "/lovable-uploads/team-ebua-glenn.png",
+    sort_order: 0,
+    expertise: "CEO",
+  },
+  {
     id: "tarshi-williams",
     name: "Tarshi Williams",
     role: "Director",
-    description: "Tarshi helps guide the company's direction, coordinate delivery, and keep client goals at the centre of each engagement.",
+    description: "Turns ideas into clear delivery plans and keeps every creative and technical project moving with purpose.",
     image: "/lovable-uploads/team-tarshi-williams.png",
     sort_order: 1,
     expertise: "Leadership, project coordination, client partnerships",
@@ -23,8 +32,8 @@ const teamProfiles: TeamProfile[] = [
   {
     id: "akimbong-chercy",
     name: "Monthe Christian",
-    role: "Human Resources",
-    description: "Monthe supports the people and team practices that help Cyrech Tech collaborate, grow, and do thoughtful work.",
+    role: "HR",
+    description: "Builds a supportive team culture and helps every member do their best work together.",
     image: "/lovable-uploads/team-monthe-christian.png",
     sort_order: 2,
     expertise: "People operations, team support, collaboration",
@@ -32,8 +41,8 @@ const teamProfiles: TeamProfile[] = [
   {
     id: "ndel-mike",
     name: "Ndel Mike",
-    role: "Head of Engineering",
-    description: "Ndel leads engineering work, helping turn product requirements into dependable, well-structured digital solutions.",
+    role: "Head of Engineering Team",
+    description: "Leads technical delivery and ensures every solution is reliable, scalable, and thoughtfully engineered.",
     image: "/lovable-uploads/team-ndel-mike.png",
     sort_order: 3,
     expertise: "Software engineering, web systems, technical delivery",
@@ -43,7 +52,7 @@ const teamProfiles: TeamProfile[] = [
     name: "Pieukam Ralf",
     role: "Chief of Operations",
     secondaryRole: "Chief of Marketing Team",
-    description: "Pieukam leads operational coordination and marketing efforts, helping projects run smoothly while strengthening the team's reach and brand presence.",
+    description: "Drives executive strategy and creates the conditions for innovation, service excellence, and sustainable growth.",
     image: "/lovable-uploads/team-pieukam-ralf.png",
     sort_order: 4,
     expertise: "Operations leadership, marketing strategy, project delivery",
@@ -120,6 +129,14 @@ const TeamPage = () => {
     ? rows.map((row) => {
         const displayedName = displayName(row.name);
         const profile = teamProfiles.find((item) => item.name.toLowerCase() === displayedName.toLowerCase());
+        if (profile) {
+          return {
+            ...row,
+            ...profile,
+            id: row.id,
+            sort_order: row.sort_order,
+          };
+        }
         const pieukam = isPieukamProfile(row.name);
         const monthe = isMontheProfile(displayedName);
         const tarshi = isTarshiProfile(displayedName);
