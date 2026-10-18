@@ -6,7 +6,7 @@ import { useNavLinks } from "./Navbar";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 const Footer = () => {
-  const { t: siteText, settings } = useSiteText();
+  const { t: siteText } = useSiteText();
   const { t } = useLanguage();
   const navLinks = useNavLinks();
   const logoSrc = siteText('logo_image') || '/lovable-uploads/logo.jpg';
@@ -16,10 +16,10 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   const socials = [
-    { name: 'GitHub', icon: Github, href: settings?.github || socialLinks.github },
-    { name: 'LinkedIn', icon: Linkedin, href: settings?.linkedin || socialLinks.linkedin },
-    { name: 'Facebook', icon: Facebook, href: settings?.facebook || socialLinks.facebook },
-    { name: 'Instagram', icon: Instagram, href: settings?.instagram || socialLinks.instagram },
+    { name: 'GitHub', icon: Github, href: socialLinks.github },
+    { name: 'LinkedIn', icon: Linkedin, href: socialLinks.linkedin },
+    { name: 'Facebook', icon: Facebook, href: socialLinks.facebook },
+    { name: 'Instagram', icon: Instagram, href: socialLinks.instagram },
   ].filter((s) => s.href);
 
   return (

@@ -4,7 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Github, Linkedin, Facebook, Instagram, Mail, MapPin, ArrowUpRight, CalendarDays, Navigation } from "lucide-react";
 import { format, startOfDay } from "date-fns";
 import AnimationWrapper from './AnimationWrapper';
-import { socialLinks } from "../pages/Index";
+import { socialLinks } from "@/lib/socialLinks";
 import { useServices, useSiteSettings } from "@/hooks/useContent";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
@@ -26,13 +26,6 @@ const ContactSection = () => {
   const selectedService = searchParams.get('service') || 'UI/UX Design';
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [submitting, setSubmitting] = useState(false);
-  const links = {
-    linkedin: settings?.linkedin || socialLinks.linkedin,
-    github: settings?.github || socialLinks.github,
-    facebook: settings?.facebook || socialLinks.facebook,
-    instagram: settings?.instagram || socialLinks.instagram,
-  };
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -104,10 +97,10 @@ const ContactSection = () => {
   };
 
   const socials = [
-    { name: 'LinkedIn', icon: Linkedin, href: links.linkedin },
-    { name: 'GitHub', icon: Github, href: links.github },
-    { name: 'Facebook', icon: Facebook, href: links.facebook },
-    { name: 'Instagram', icon: Instagram, href: links.instagram },
+    { name: 'LinkedIn', icon: Linkedin, href: socialLinks.linkedin },
+    { name: 'GitHub', icon: Github, href: socialLinks.github },
+    { name: 'Facebook', icon: Facebook, href: socialLinks.facebook },
+    { name: 'Instagram', icon: Instagram, href: socialLinks.instagram },
   ];
 
   return (
@@ -134,7 +127,7 @@ const ContactSection = () => {
                 <Mail className="h-4 w-4" /> {t("Email Us")}
               </a>
               <a
-                href={links.github}
+                href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary-foreground/30 font-semibold text-sm hover:bg-primary-foreground/10 transition-colors"

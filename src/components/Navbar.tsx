@@ -108,7 +108,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`md:hidden overflow-hidden transition-all duration-500 ${open ? 'max-h-[36rem] opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`md:hidden overflow-x-hidden overscroll-contain transition-all duration-500 ${open ? 'max-h-[calc(100dvh-4rem)] overflow-y-auto opacity-100' : 'max-h-0 overflow-y-hidden opacity-0'}`}>
         <nav className="flex flex-col py-4 px-6 gap-1">
           {navLinks.filter((link) => link.to !== '/collaborations/careers').map((link) => (
             <div key={link.to}>

@@ -3,7 +3,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useSiteSettings, SiteSettingsRow } from "@/hooks/useContent";
+import { socialLinks } from "@/lib/socialLinks";
 import { AdminCard, Field, PrimaryButton } from "./ui";
+
+const officialSocialProfiles = [
+  { name: "LinkedIn", href: socialLinks.linkedin },
+  { name: "GitHub", href: socialLinks.github },
+  { name: "Facebook", href: socialLinks.facebook },
+  { name: "Instagram", href: socialLinks.instagram },
+];
 
 const SettingsEditor = () => {
   const { data } = useSiteSettings();
@@ -41,10 +49,14 @@ const SettingsEditor = () => {
         <Field label="Hero subtitle" value={form.hero_subtitle} onChange={set("hero_subtitle")} textarea />
         <Field label="About text" value={form.about_text} onChange={set("about_text")} textarea />
         <Field label="Location" value={form.location} onChange={set("location")} />
-        <Field label="LinkedIn URL" value={form.linkedin} onChange={set("linkedin")} />
-        <Field label="GitHub URL" value={form.github} onChange={set("github")} />
-        <Field label="Facebook URL" value={form.facebook} onChange={set("facebook")} />
-        <Field label="Instagram URL" value={form.instagram} onChange={set("instagram")} />
+        <div className="space-y-2 text-sm">
+          <p className="font-medium">Official social profiles</p>
+          {officialSocialProfiles.map(({ name, href }) => (
+            <a key={name} className="block text-primary underline" href={href} target="_blank" rel="noreferrer">
+              {name}
+            </a>
+          ))}
+        </div>
       </div>
       <PrimaryButton onClick={save} disabled={saving}>
         Save settings

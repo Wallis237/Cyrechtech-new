@@ -1,6 +1,6 @@
 export const socialLinks = {
-  linkedin: "https://www.linkedin.com/in/tarshiwilliams",
-  github: "https://github.com/Wallis237",
-  facebook: "https://www.facebook.com/tarshi.william",
-  instagram: "https://www.instagram.com/tarshiwilliams?igsh=YzkxczVjY29pcm42",
+  linkedin: "https://www.linkedin.com/in/cyrech-tech-b3866a441/?isSelfProfile=true",
+  github: "https://github.com/cyrechtech-afk?tab=repositories",
+  facebook: "https://www.facebook.com/profile.php?id=61594917579750",
+  instagram: "https://www.instagram.com/cyrech_tech/",
 };
